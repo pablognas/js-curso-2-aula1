@@ -1,5 +1,16 @@
 function gerarNumeroAleatorio() {
-    return parseInt(Math.floor(Math.random() * 10) + 1);
+    let numeroEscolhido = parseInt(Math.floor(Math.random() * numeroLimite) + 1);
+    let quantidadeDeNumerosSorteados = listaDeNumerosSorteados.length;
+    if (quantidadeDeNumerosSorteados >= numeroLimite) {
+        listaDeNumerosSorteados = [];
+    }
+    if (listaDeNumerosSorteados.includes(numeroEscolhido)) {
+        return gerarNumeroAleatorio();
+    } else {
+        listaDeNumerosSorteados.push(numeroEscolhido);
+        console.log('Número sorteado: ' + numeroEscolhido);
+        return numeroEscolhido;
+    }
 }
 
 function exibirTextoNaTela(tag, texto) {
@@ -46,6 +57,8 @@ function reiniciarJogo() {
     
 }
 
+let listaDeNumerosSorteados = [];
+let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 exibirMensagemInicial();
